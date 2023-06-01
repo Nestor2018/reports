@@ -12,9 +12,7 @@ const App = () => {
     <NavigationContainer>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <SafeAreaView style={{flex: 1}}>
             <StackNavigation />
-          </SafeAreaView>
         </PersistGate>
       </Provider>
     </NavigationContainer>

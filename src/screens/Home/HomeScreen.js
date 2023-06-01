@@ -1,38 +1,39 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button, FlatList} from 'react-native';
+import {Text, StyleSheet, SafeAreaView} from 'react-native';
 import {useSelector} from 'react-redux';
 
-import ReportList from '../components/ReportList';
-import FloatingButton from '../components/FloatingButton';
-import colors from '../constants/colors';
+import ReportList from '../../components/ReportList';
+import FloatingButton from '../../components/FloatingButton';
+import colors from '../../constants/colors';
+import sizes from '../../constants/sizes';
 
 const HomeScreen = ({navigation}) => {
   const reports = useSelector(state => state.reports.listReports);
-  console.log(reports);
+  const reversedReports = reports.slice().reverse();
 
   const redirectCreateReport = () => {
-    navigation.navigate('create');
+    navigation.navigate('Create');
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Incident report</Text>
-      <ReportList data={reports} />
+      <ReportList data={reversedReports} />
       <FloatingButton press={redirectCreateReport} />
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.green,
-    marginBottom: 100,
+    flex: 1,
+    backgroundColor: colors.champagne,
     minHeight: '100%',
   },
   title: {
     marginVertical: 20,
     color: colors.blue,
-    fontSize: 30,
+    fontSize: sizes.titlePage,
     textAlign: 'center',
   },
 });

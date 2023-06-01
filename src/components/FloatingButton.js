@@ -2,6 +2,7 @@ import React from 'react';
 import {View, TouchableOpacity, StyleSheet, Text} from 'react-native';
 
 import colors from '../constants/colors';
+import sizes from '../constants/sizes';
 
 const FloatingButton = ({press}) => {
   return (
@@ -29,8 +30,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    color: 'white',
-    fontSize: 24,
+    color: colors.white,
+    fontSize: sizes.title,
     fontWeight: 'bold',
   },
 });

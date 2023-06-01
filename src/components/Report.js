@@ -6,18 +6,24 @@ import {
   TouchableWithoutFeedback,
   Image,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import colors from '../constants/colors';
+import sizes from '../constants/sizes';
 
 const Report = ({title, description, image}) => {
+  const navigation = useNavigation();
+
   const truncatedContent = (text, limit) => {
-    return text.length > limit
-      ? text.substring(0, limit) + '...' // Truncar y agregar puntos suspensivos
-      : text;
+    return text.length > limit ? text.substring(0, limit) + '...' : text;
+  };
+
+  const redirectDetailReport = () => {
+    navigation.navigate('Detail', {title, description, image});
   };
 
   return (
-    <TouchableWithoutFeedback onPress={console.log('press')}>
+    <TouchableWithoutFeedback onPress={redirectDetailReport}>
       <View style={styles.card}>
         <View style={styles.contianer}>
           <View style={styles.columnLeft}>
@@ -26,7 +32,7 @@ const Report = ({title, description, image}) => {
           <View style={styles.columnRight}>
             <Text style={styles.title}>{truncatedContent(title, 12)}</Text>
             <Text style={styles.description}>
-              {truncatedContent(description, 180)}
+              {truncatedContent(description, 120)}
             </Text>
           </View>
         </View>
@@ -38,13 +44,15 @@ const Report = ({title, description, image}) => {
 const styles = StyleSheet.create({
   card: {
     flex: 1,
+    height: 160,
   },
   contianer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: colors.blue,
-    padding: 5,
-    margin: 5,
+    padding: sizes.padding,
+    margin: sizes.padding,
+    borderRadius: sizes.borderRadius,
   },
   columnLeft: {
     flex: 1,
@@ -55,16 +63,17 @@ const styles = StyleSheet.create({
   title: {
     color: colors.champagne,
     fontWeight: 'bold',
-    fontSize: 18,
-    paddingTop: 10,
+    fontSize: sizes.subtitle,
+    paddingTop: sizes.padding,
   },
   description: {
-    fontSize: 14,
+    fontSize: sizes.text,
     color: colors.champagne,
   },
   image: {
     width: '90%',
     height: '90%',
+    borderRadius: sizes.borderRadius,
   },
 });
 

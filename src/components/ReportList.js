@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button, FlatList} from 'react-native';
+import {FlatList, Text} from 'react-native';
 
 import Report from './Report';
 
@@ -7,8 +7,9 @@ const ReportList = ({data}) => {
   return (
     <FlatList
       data={data}
-      numColumns={1}
       keyExtractor={item => item.id}
+      ListEmptyComponent={() => <Text>Empty</Text>}
+      initialNumToRender={5}
       renderItem={({item}) => (
         <Report
           title={item.title}
@@ -19,11 +20,5 @@ const ReportList = ({data}) => {
     />
   );
 };
-
-const styles = StyleSheet.create({
-  flatListContentContainer: {
-    paddingVertical: 50,
-  },
-});
 
 export default ReportList;
