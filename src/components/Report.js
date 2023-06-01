@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     paddingTop: sizes.padding,
   },
   description: {
+    height: 100,
     fontSize: sizes.text,
     color: colors.champagne,
   },

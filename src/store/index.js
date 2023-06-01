@@ -9,7 +9,7 @@ const reducers = combineReducers({
 });
 
 const persistConfig = {
-  key: 'root5',
+  key: 'root7',
   storage: AsyncStorage,
   whitelist: ['reports'],
 };
