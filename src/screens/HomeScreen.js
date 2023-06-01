@@ -2,6 +2,8 @@ import React from 'react';
 import {View, Text, StyleSheet, Button, FlatList} from 'react-native';
 
 import ReportList from '../components/ReportList';
+import FloatingButton from '../components/FloatingButton';
+import colors from '../constants/colors';
 
 const DATA = [
   {
@@ -98,17 +100,27 @@ const DATA = [
 ];
 
 const HomeScreen = ({navigation}) => {
+  const redirectCreateReport = () => {
+    navigation.navigate('create');
+  };
+
   return (
-    <View>
-      <Text style={styles.title}>Home</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Incident report</Text>
       <ReportList data={DATA} />
-      <Button title="go create" onPress={() => navigation.navigate('create')} />
+      <FloatingButton press={redirectCreateReport} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.green,
+    marginBottom: 100,
+  },
   title: {
+    marginVertical: 20,
+    color: colors.blue,
     fontSize: 30,
     textAlign: 'center',
   },
